@@ -1,0 +1,32 @@
+version: "3.7"
+
+volumes:
+  histdir:
+
+services:
+  devops:
+    image: devops-cli:1.0.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        UID: 501
+        GID: 20
+    container_name: devops-cli
+    working_dir: /opt/infra
+    environment:
+      TZ: "US/Eastern"
+    ports:
+      - "2222:22"
+      - "5000:5000"
+    # cap_add:
+    #   - ALL    
+    # ulimits:
+    #   nproc: 65535
+    #   nofile: -1
+    volumes:
+      - $HOME/.zsh_history_devops-cli:/home/devops/.zsh_history:rw
+      - $HOME/.aws:/home/devops/.aws
+      - .:/opt/infra
+      - ./entrypoint.sh:/usr/local/bin/entrypoint.sh
+      - /var/run/docker.sock:/var/run/docker.sock
