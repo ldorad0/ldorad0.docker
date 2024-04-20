@@ -18,7 +18,7 @@ Of note are the following:
 To be done before you bring up the project or build the image:
 
 - Create a new set of ssh keys: `ssh-keygen -f ./id_rsa -t rsa -N ''`
-- Add the newly-generated ssh public key to your [authorized_keys](authorized_keys) file:<br />
+- Initialize your authorized_keys file:<br />
   `cat id_rsa.pub >> authorized_keys`
 - Create your container's HISTORY file: `touch $HOME/.zsh_history_devops-cli`
 
